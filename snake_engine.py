@@ -4,7 +4,7 @@ import numpy as np
 import random as rn
 from snake_pieces import *
 
-boardSize = (13,13)
+boardSize = (30,30)
 
 gameBoard = Board(boardSize)
 
@@ -13,14 +13,9 @@ snake.draw(gameBoard)
 
 gameover = False
 
-# food = Food(4,4)
-# food.drop(gameBoard)
+food = Food(0,0)
 
-gameBoard.printBoard()
-print()
-
-while not gameover:
-    
+def dropFood():
     if not gameBoard.foodLeft:
         food_allowed = False
         while not food_allowed:
@@ -34,29 +29,41 @@ while not gameover:
         food = Food(food_x, food_y)
         food.drop(gameBoard)
         gameBoard.foodLeft = True
-        gameBoard.printBoard()
-        print()
 
-    turn = input('which direction?: ')
-    if turn == 'l':
-        turn = -1
-    elif turn == 'r':
-        turn = 1
-    else:
-        turn = 0
-
+def moveSnake(turn):
     snake.facing = (snake.facing + turn) % 4
     
     snake.move(gameBoard)
-    
-    gameover = snake.checkDead(gameBoard)
 
-    if snake.body[0] == [food_x, food_y]:
-        snake.grow(gameBoard, food.type)
+    gameover, message = snake.checkDead(gameBoard)
+
+    foodPos = gameBoard.foodLocation
+    if snake.body[0] == foodPos:
+        snake.grow(gameBoard, gameBoard.foodType)
         gameBoard.foodLeft = False
 
-    gameBoard.printBoard()
-    print()
+    return gameover, message
 
+# while not gameover:
+    
+#     dropFood()
+    
+#     gameBoard.printBoard()
+#     print()
+
+#     turn = input('which direction?: ')
+#     if turn == 'a':
+#         turn = -1
+#     elif turn == 'd':
+#         turn = 1
+#     else:
+#         turn = 0
+
+#     gameover, message = moveSnake(turn)
+
+#     if gameover:
+#         print()
+#         print('GAMEOVER')
+#         print(message)
 
     
