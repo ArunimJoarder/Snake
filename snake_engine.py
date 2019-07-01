@@ -8,7 +8,7 @@ boardSize = (30,30)
 
 gameBoard = Board(boardSize)
 
-snake = Snake()
+snake = Snake(int(boardSize[0] / 2), int(boardSize[1] / 2))
 snake.draw(gameBoard)
 
 gameover = False

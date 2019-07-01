@@ -30,10 +30,10 @@ class Food:
         board.changeBoard(self.x, self.y, self.type)
 
 class Snake:
-    def __init__(self):
+    def __init__(self, x, y):
         self.length     = 2
         self.facing     = 2
-        self.body       = [[15,15]]
+        self.body       = [[x,y]]
         self.isGrowing  = 0
 
     def draw(self, board):

@@ -22,8 +22,8 @@ def wipeScreen(win):
     win.fill(BLACK)
 
 def getCoordinates(coor):
-    y = int(screenWidth/boardSize[0]) * coor[0] + round(snake_body_radius/2)
-    x = int(screenWidth/boardSize[1]) * coor[1] + round(snake_body_radius/2)
+    y = int(screenWidth/boardSize[0]) * coor[0] + round(snake_body_radius)
+    x = int(screenWidth/boardSize[1]) * coor[1] + round(snake_body_radius)
     return (x,y)
 
 def drawSnake(win):
@@ -56,8 +56,8 @@ while not gameover:
     dropFood()
     
     # updateScreen(startWin)
-    gameBoard.printBoard()
-    print()
+    # gameBoard.printBoard()
+    # print()
 
     keys = pygame.key.get_pressed()
     turn = 0
@@ -74,4 +74,4 @@ while not gameover:
         print('GAMEOVER')
         print(message)
 
-    pygame.time.delay(150)
+    pygame.time.delay(120)
